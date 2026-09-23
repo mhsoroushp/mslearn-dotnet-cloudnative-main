@@ -1,0 +1,16 @@
+apiVersion: linkerd.io/v1alpha2
+kind: ServiceProfile
+metadata:
+  name: backend
+  namespace: default
+spec:
+  routes:
+  - condition:
+      method: GET
+      pathRegex: /api/Product
+    name: GET /v1/products
+    isRetryable: true
+  retryBudget:
+    retryRatio: 0.2
+    minRetriesPerSecond: 10
+    ttl: 120s

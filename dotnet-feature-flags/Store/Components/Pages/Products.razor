@@ -1,4 +1,6 @@
-﻿@page "/products"
+﻿@using Microsoft.FeatureManagement
+@inject IFeatureManager FeatureManager
+@page "/products"
 @using DataEntities
 @using Store.Services
 @inject ProductService ProductService
@@ -14,6 +16,14 @@
 <h1>Products</h1>
 
 <p>Here are some of our amazing outdoor products that you can purchase.</p>
+
+<!-- Add a sales alert for customers -->
+@if (saleOn)
+{
+    <div class="alert alert-success" role="alert">
+    Our sale is now on.
+    </div>
+}
 
 @if (products == null)
 {
@@ -40,7 +50,14 @@ else
                     <td><img height="80" width="80" src="https://raw.githubusercontent.com/MicrosoftDocs/mslearn-dotnet-cloudnative/main/dotnet-docker/Products/wwwroot/images/@product.ImageUrl" /></td>
                     <td>@product.Name</td>
                     <td>@product.Description</td>
-                    <td>@product.Price </td>
+                    <td>
+                    @if (saleOn) {
+                        <strike>@(product.Price)</strike><br>
+                        @((product.Price * discountPercentage).ToString("#.##"))
+                    } else {
+                        @product.Price
+                    }
+                    </td>
                 </tr>
             }
         </tbody>
@@ -48,13 +65,20 @@ else
 }
 
 @code {
+    private decimal discountPercentage;
+    private bool saleOn = false;
     private List<Product>? products;
 
     protected override async Task OnInitializedAsync()
     {
+        saleOn = await FeatureManager.IsEnabledAsync("SeasonalDiscount");
         // Simulate asynchronous loading to demonstrate streaming rendering
         await Task.Delay(500);
         products = await ProductService.GetProducts();
+
+        if (saleOn) {
+            discountPercentage = Convert.ToDecimal(Configuration.GetSection("eShopLite__Store__DiscountPercent").Value);
+        }
     }
 
 }

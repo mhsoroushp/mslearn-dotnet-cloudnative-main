@@ -1,0 +1,49 @@
+﻿
+{
+    "Name": "DataEntities",
+    "Types": [
+        {
+            "Name": "DataEntities.Order",
+            "Members": [
+                {
+                    "Name": "CustomerAddress",
+                    "Type": "string",
+                    "File": "/home/soroush/workspace/mslearn-dotnet-cloudnative-main/dotnet-compliance/eShopLite/DataEntities/Order.cs",
+                    "Line": "24",
+                    "Classifications": [
+                        {
+                            "Name": "EUIIData"
+                        }
+                    ]
+                },
+                {
+                    "Name": "CustomerName",
+                    "Type": "string",
+                    "File": "/home/soroush/workspace/mslearn-dotnet-cloudnative-main/dotnet-compliance/eShopLite/DataEntities/Order.cs",
+                    "Line": "20",
+                    "Classifications": [
+                        {
+                            "Name": "EUIIData"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "DataEntities.Product",
+            "Members": [
+                {
+                    "Name": "Id",
+                    "Type": "int",
+                    "File": "/home/soroush/workspace/mslearn-dotnet-cloudnative-main/dotnet-compliance/eShopLite/DataEntities/Product.cs",
+                    "Line": "11",
+                    "Classifications": [
+                        {
+                            "Name": "EUPData"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -72,6 +72,8 @@ public class ProductService
   {
       try
       {
+          _logger.LogOrders(order);
+
           var response = await httpClient.PostAsync("/api/Order", new StringContent(JsonSerializer.Serialize(order), Encoding.UTF8, "application/json"));
 
           if (response.IsSuccessStatusCode)
@@ -91,3 +93,11 @@ public class ProductService
 
 
 }
+
+#region Logging Extensions
+public static partial class Log
+{
+    [LoggerMessage(1, LogLevel.Information, "Placed Order: {order}")]
+    public static partial void LogOrders(this ILogger logger, [LogProperties] Order order);
+}
+#endregion

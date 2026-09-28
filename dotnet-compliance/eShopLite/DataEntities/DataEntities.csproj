@@ -5,6 +5,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <!-- Add Compliance Reports Here -->
+    <GenerateComplianceReport>true</GenerateComplianceReport>
+    <ComplianceReportOutputPath>$(MSBuildThisFileDirectory)\..\ComplianceReport\DataEntities</ComplianceReportOutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.AuditReports" Version="10.10.0" />
+    <PackageReference Include="Microsoft.Extensions.Compliance.Redaction" Version="10.10.0" />
+  </ItemGroup>
 
 </Project>

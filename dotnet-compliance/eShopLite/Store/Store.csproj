@@ -7,6 +7,8 @@
     <LangVersion>preview</LangVersion>
 
     <!-- Add Compliance Report Here -->
+    <GenerateComplianceReport>true</GenerateComplianceReport>
+    <ComplianceReportOutputPath>$(MSBuildThisFileDirectory)\..\ComplianceReport\Store</ComplianceReportOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="8.0.*" />
-    <PackageReference Include="Microsoft.Extensions.AuditReports" Version="8.*" />
+    <PackageReference Include="Microsoft.Extensions.AuditReports" Version="10.10.0" />
     <PackageReference Include="Microsoft.Extensions.Telemetry" Version="8.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.*" />

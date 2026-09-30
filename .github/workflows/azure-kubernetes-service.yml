@@ -12,7 +12,7 @@ env:
   RESOURCE_GROUP: 'rg-eshop'
   CLUSTER_NAME: 'aks-testshop'
   DEPLOYMENT_MANIFEST_PATH: './product.yml'
-  DOCKER_PATH: './DockerfileProducts.acr'
+  DOCKER_PATH: './dotnet-feature-flags/DockerfileProducts.acr'
 
 jobs:
   buildImage:

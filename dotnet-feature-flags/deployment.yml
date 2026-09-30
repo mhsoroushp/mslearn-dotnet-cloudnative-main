@@ -14,7 +14,8 @@ spec:
       nodeSelector:
         kubernetes.io/os: linux
       containers:
-        - image: [replace with your ACR name].azurecr.io/storeimage:v1
+        - image: acseshop84672240.azurecr.io/storeimage:v1
+          imagePullPolicy: Always
           name: storeimage
           resources:
             requests:
@@ -27,6 +28,8 @@ spec:
             - containerPort: 8080
               name: http
           env:
+            - name: ASPNETCORE_URLS
+              value: http://+:8080
             - name: ProductEndpoint
               value: http://eshop-backend
             - name: ImagePrefix
@@ -62,7 +65,8 @@ spec:
       nodeSelector:
         kubernetes.io/os: linux
       containers:
-        - image: [replace with your ACR name].azurecr.io/productservice:v1
+        - image: acseshop84672240.azurecr.io/productservice:v1
+          imagePullPolicy: Always
           name: productservice
           resources:
             requests:
@@ -74,6 +78,9 @@ spec:
           ports:
             - containerPort: 8080
               name: http
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:8080
 ---
 apiVersion: v1
 kind: Service

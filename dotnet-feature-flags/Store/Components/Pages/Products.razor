@@ -1,5 +1,5 @@
-﻿@using Microsoft.FeatureManagement
-@inject IFeatureManager FeatureManager
+﻿@* @using Microsoft.FeatureManagement
+@inject IFeatureManager FeatureManager *@
 @page "/products"
 @using DataEntities
 @using Store.Services
@@ -71,14 +71,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        saleOn = await FeatureManager.IsEnabledAsync("SeasonalDiscount");
+        //saleOn = await FeatureManager.IsEnabledAsync("SeasonalDiscount");
         // Simulate asynchronous loading to demonstrate streaming rendering
         await Task.Delay(500);
         products = await ProductService.GetProducts();
 
-        if (saleOn) {
+        @* if (saleOn) {
             discountPercentage = Convert.ToDecimal(Configuration.GetSection("eShopLite__Store__DiscountPercent").Value);
-        }
+        } *@
     }
 
 }
